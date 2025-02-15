@@ -76,6 +76,7 @@ contract Quiz{
         uint256 sum = 0;
         for(uint256 i=0; i<quizNum; i++){
             sum += bets[i][msg.sender];
+            bets[i][msg.sender] = 0;
         }
         (bool s, bytes memory r) = msg.sender.call{value: sum}("");
         require(s, "claim failed");
